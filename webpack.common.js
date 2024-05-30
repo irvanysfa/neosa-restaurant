@@ -9,9 +9,9 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 
 module.exports = {
   entry: {
-    app: path.resolve(__dirname, 'src/scripts/index.js'),
-    detailrestaurant: path.resolve(__dirname, 'src/scripts/detailrestaurant.js'),
-    favorite: path.resolve(__dirname, 'src/scripts/favorite.js'),
+    app: './src/scripts/index.js',
+    detailrestaurant: './src/scripts/detailrestaurant.js',
+    favorite: './src/scripts/favorite.js',
   },
   output: {
     filename: '[name].bundle.js',
@@ -33,24 +33,6 @@ module.exports = {
   optimization: {
     splitChunks: {
       chunks: "all",
-      minSize: 20000,
-      maxSize: 70000,
-      minChunks: 1,
-      maxAsyncRequests: 30,
-      maxInitialRequests: 30,
-      automaticNameDelimiter: "~",
-      enforceSizeThreshold: 50000,
-      cacheGroups: {
-        defaultVendors: {
-          test: /[\\/]node_modules[\\/]/,
-          priority: -10,
-        },
-        default: {
-          minChunks: 2,
-          priority: -20,
-          reuseExistingChunk: true,
-        },
-      },
     },
   },
   plugins: [
@@ -58,24 +40,24 @@ module.exports = {
     new BundleAnalyzerPlugin(),
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: path.resolve(__dirname, 'src/templates/index.html'),
+      template: './src/templates/index.html',
       chunks: ['app'],
     }),
     new HtmlWebpackPlugin({
       filename: 'detailrestaurant.html',
-      template: path.resolve(__dirname, 'src/templates/detailrestaurant.html'),
+      template: './src/templates/detailrestaurant.html',
       chunks: ['detailrestaurant'],
     }),
     new HtmlWebpackPlugin({
       filename: 'favorite.html',
-      template: path.resolve(__dirname, 'src/templates/favorite.html'),
+      template: './src/templates/favorite.html',
       chunks: ['favorite'],
     }),
     new CopyWebpackPlugin({
       patterns: [
         {
-          from: path.resolve(__dirname, 'src/public'),
-          to: path.resolve(__dirname, 'dist'),
+          from: './src/public',
+          to: './dist',
         },
       ],
     }),
