@@ -2,23 +2,21 @@ import { openDB } from 'idb';
 import { saveRestaurantToDB, removeRestaurantFromDB, isRestaurantFavoriteInDB } from '../src/scripts/db';
 
 describe("Favorites Functionality", () => {
-  // Membersihkan dan menyiapkan database sebelum setiap pengujian
+  let db;
+
   beforeEach(async () => {
-    // Hapus database untuk memastikan pengujian dimulai dari keadaan bersih
-    await indexedDB.deleteDatabase('restaurant-favorites');
-    // Buka database dan buat toko objek jika belum ada
-    const db = await openDB('restaurant-favorites', 1, {
+    db = await openDB('restaurant-favorites', 1, {
       upgrade(db) {
         if (!db.objectStoreNames.contains('restaurants')) {
           db.createObjectStore('restaurants', { keyPath: 'id' });
         }
       }
     });
-    // Membersihkan toko objek
-    const tx = db.transaction('restaurants', 'readwrite');
-    const store = tx.objectStore('restaurants');
-    await store.clear(); // Membersihkan semua data dalam toko objek 'restaurants'
-    await tx.done;
+  });
+
+  afterEach(async () => {
+    // Tutup koneksi database setelah setiap pengujian selesai
+    db.close();
   });
 
   test("Add to Favorites", async () => {
