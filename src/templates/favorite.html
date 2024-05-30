@@ -1,0 +1,33 @@
+<!-- src/templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.cdnfonts.com/css/wadingr-trial" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/league-mono" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/nunito-2" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="noesa-logo.png" />
+    <title>Noesa Restaurant</title>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Menuju ke konten</a>
+
+    <custom-navbar></custom-navbar>
+<main id="main-content">
+    <div class="hero">
+        <picture>
+            <source media="(max-width: 300px)" srcset="./images/heros/responsive/hero-image_4-300.jpg">
+            <source media="(max-width: 600px)" srcset="./images/heros/responsive/hero-image_4-600.jpg">
+            <source media="(max-width: 900px)" srcset="./images/heros/responsive/hero-image_4-900.jpg">
+            <source media="(max-width: 1200px)" srcset="./images/heros/responsive/hero-image_4-1200.jpg">
+            <img src="./images/heros/responsive/hero-image_4-1200.jpg" alt="Hero Image">
+        </picture>
+    </div>
+    <favorite-restaurants></favorite-restaurants>
+</main>
+<custom-footer></custom-footer>
+</body>
+</html>
